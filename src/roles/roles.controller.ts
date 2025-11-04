@@ -1,0 +1,13 @@
+// src/roles/roles.controller.ts
+import { Controller, Get } from '@nestjs/common';
+import { RolesService } from './roles.service';
+
+@Controller('roles')
+export class RolesController {
+  constructor(private readonly roles: RolesService) {}
+
+  @Get()
+  list() {
+    return this.roles.findAll();
+  }
+}

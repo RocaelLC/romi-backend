@@ -1,13 +1,18 @@
-import 'reflect-metadata';
 import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module';
-import { WsAdapter } from '@nestjs/platform-ws';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
-  app.useWebSocketAdapter(new WsAdapter(app));   // 👈 fuerza usar "ws"
-  const port = Number(process.env.PORT) || 3001;
-  await app.listen(port);
-  console.log(`HTTP running on http://localhost:${port}`);
+
+  app.enableCors({
+    origin: ['http://localhost:3000', 'http://127.0.0.1:3000'],
+    credentials: true,
+    methods: 'GET,HEAD,PUT,PATCH,POST,DELETE,OPTIONS',
+    // Add lowercase variant to satisfy Access-Control-Request-Headers: authorization
+    allowedHeaders: ['Content-Type', 'Authorization', 'authorization'],
+    optionsSuccessStatus: 204,
+  });
+
+  await app.listen(3001, '0.0.0.0');
 }
 bootstrap();
