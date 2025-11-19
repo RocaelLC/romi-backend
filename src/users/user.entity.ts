@@ -2,13 +2,14 @@ import {
   Column,
   CreateDateColumn,
   Entity,
-
   ManyToOne,
+  OneToMany,
+  OneToOne,
   PrimaryGeneratedColumn,
 } from 'typeorm';
 import { Role } from '../roles/role.entity';
-import { OneToOne } from 'typeorm';
 import { DoctorProfile } from '../users/doctor-profile.entity';
+import { Notification } from '../notifications/notification.entity';
 @Entity('users')
 export class User {
   @OneToOne(() => DoctorProfile, (p) => p.user, { cascade: true, eager: false })
@@ -34,7 +35,10 @@ export class User {
   @ManyToOne(() => Role, (r) => r.users, { eager: true, nullable: false })
   role!: Role;
 
- 
+  @OneToMany(() => Notification, (n) => n.user)
+  notifications?: Notification[];
+
+  
   @CreateDateColumn({ type: 'timestamptz' })
   created_at!: Date;
   appointmentsAsDoctor: any;

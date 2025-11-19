@@ -22,26 +22,21 @@ export class AuthController {
     private readonly usersService: UsersService,
   ) {}
 
-  // POST /auth/register
   @Post('register')
   async register(@Body() dto: RegisterDto) {
-    // Ajusta a como creas usuarios en tu UsersService.
-    // Debe devolver el usuario creado (con id/email).
     const user = await this.usersService.createUserWithRoles(dto);
     return { id: user.id, email: user.email };
   }
 
-  // POST /auth/login
   @Post('login')
   async login(@Body() dto: LoginDto) {
-    // Retorna { access_token }
     return this.authService.login(dto.email, dto.password);
   }
 
- @UseGuards(JwtAuthGuard)
+@UseGuards(JwtAuthGuard)
 @Get('me')
 getMe(@Req() req: any) {
-  return req.user; // { sub, email, roles: [...] }
+  return req.user;
 }
 
 }

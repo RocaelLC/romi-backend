@@ -1,4 +1,3 @@
-// src/roles/roles.seed.ts
 import { Injectable, OnApplicationBootstrap } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { In, Repository } from 'typeorm';
@@ -14,7 +13,6 @@ export class RolesSeed implements OnApplicationBootstrap {
     const missing = desired.filter((n) => !existing.find((r) => r.name === n));
     if (missing.length) {
       await this.repo.save(missing.map((name) => this.repo.create({ name })));
-      // opcional: console.log('Seeded roles:', missing);
     }
   }
 }

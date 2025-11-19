@@ -6,6 +6,11 @@ import { RolesModule } from './roles/roles.module';
 import { UsersModule } from './users/users.module';
 import { AuthModule } from './auth/auth.module';
 import { AppointmentsModule } from './appointments/appointments.module';
+import { CallModule } from './call/call.module';
+import { ChatModule } from './chat/chat.module';
+import { NotificationsModule } from './notifications/notifications.module';
+import { RealtimeModule } from './realtime/realtime.module';
+import { CronModule } from './cron/cron.module';
 
 @Module({
   imports: [
@@ -24,6 +29,11 @@ import { AppointmentsModule } from './appointments/appointments.module';
     UsersModule,
     AuthModule,
     AppointmentsModule,
+    CallModule,
+    ChatModule,
+    NotificationsModule,
+    RealtimeModule,
+    CronModule,
   ],
 })
 export class AppModule {}

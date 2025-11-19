@@ -48,7 +48,7 @@ export class AuthService {
         ? user.roles.map((r: RoleLike) => r.name)
         : (user.role?.name ? [user.role.name] : []);
 
-    const payload = { sub: user.id, email: user.email, roles };
+    const payload = { sub: user.id, email: user.email, name: (user as any).name, roles };
     const access_token = await this.jwt.signAsync(payload);
     return { access_token };
   }

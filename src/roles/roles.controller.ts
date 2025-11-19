@@ -1,4 +1,3 @@
-// src/roles/roles.controller.ts
 import { Controller, Get } from '@nestjs/common';
 import { RolesService } from './roles.service';
 

@@ -1,7 +1,6 @@
-// typeorm.config.ts
 import { DataSource } from 'typeorm';
 import { config } from 'dotenv';
-config(); // carga .env
+config();
 
 export default new DataSource({
   type: 'postgres',

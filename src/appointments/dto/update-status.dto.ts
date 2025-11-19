@@ -3,5 +3,5 @@ import { AppointmentStatus } from '../appointment.entity';
 
 export class UpdateAppointmentStatusDto {
   @IsEnum(AppointmentStatus)
-  status: AppointmentStatus; // ACCEPTED | CANCELED | COMPLETED
+  status: AppointmentStatus; // ACCEPTED | REJECTED | CANCELLED | ATTENDED
 }
